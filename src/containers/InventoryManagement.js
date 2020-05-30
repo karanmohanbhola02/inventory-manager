@@ -8,9 +8,8 @@ import { inventory } from '../store/actions';
 class InventoryManagement extends React.Component {
 
     handleButtonItemClick = () => {
-
         //call action to add a inventory type card
-        this.props.addInventoryType(null);
+        this.props.addInventoryType();
     }
 
     render() {
@@ -19,7 +18,7 @@ class InventoryManagement extends React.Component {
             <div>
                 <div className="buttongroup-container">
                     <Button variant="contained" color="primary" onClick={this.handleButtonItemClick}>
-                        Add Item
+                        Add Type
                 </Button>
                 </div>
                 <InventoryCardList>

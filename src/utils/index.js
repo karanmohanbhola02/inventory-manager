@@ -20,6 +20,23 @@ const getCardTemplatedBasesOnInventoryType = (inventoryTypes, inventoryType) => 
     return inventoryTemplate;
 };
 
+const getInventoryTypeCardTemplate = () => {
+    const inventoryTypeTemplate = {
+        id: `inventoryType_${Math.floor(1000000000 + Math.random() * 900000)}`,
+        type: "",
+        titleKey: "title",
+        fields: [
+            {
+                fieldName: "Title",
+                key: "title",
+                fieldType: "smallText"
+            }
+        ]
+    };
+    return inventoryTypeTemplate;
+};
+
 export default {
-    getCardTemplatedBasesOnInventoryType
+    getCardTemplatedBasesOnInventoryType,
+    getInventoryTypeCardTemplate
 };

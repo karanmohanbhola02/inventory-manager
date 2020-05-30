@@ -46,13 +46,32 @@ const editInventory = (inventoryCardIndex, inventoryFieldsData) => {
 
 const addInventoryType = () => {
     return (dispatch, getState) => {
-
+        const existingInventoryTypes = getState().inventory.inventoryTypes;
+        const inventoryTypes = existingInventoryTypes ? [...existingInventoryTypes] : [];
+        const inventoryTypeCardTemplate = utils.getInventoryTypeCardTemplate();
+        inventoryTypes.push(inventoryTypeCardTemplate);
+        dispatch({
+            type: actions.ADD_INVENTORY_TYPE,
+            payload: inventoryTypes || []
+        });
     }
 }
 
-const removeInventoryType = () => {
+const removeInventoryType = (inventoryTypeIndex) => {
     return (dispatch, getState) => {
+        const existingInventoryTypes = getState().inventory.inventoryTypes;
+        const inventoryTypes = existingInventoryTypes ? [...existingInventoryTypes] : [];
+        const inventoryType = inventoryTypes[inventoryTypeIndex];
+        inventoryTypes.splice(inventoryTypeIndex, 1);
 
+        // remove associated inventories
+        const existingInventories = getState().inventory.inventories;
+        const filteredInventories = existingInventories.filter((existingInventory) => !(existingInventory.inventoryTypeId === inventoryType.id && existingInventory.type === inventoryType.type));
+        dispatch({
+            type: actions.REMOVE_INVENTORY_TYPE,
+            payload: inventoryTypes || [],
+            inventories: filteredInventories
+        });
     }
 }
 

@@ -23,6 +23,17 @@ const inventory = (state = initialState, action) => {
                 ...state,
                 inventories: action.payload
             }
+        case actions.REMOVE_INVENTORY_TYPE:
+            return {
+                ...state,
+                inventoryTypes: action.payload,
+                inventories: action.inventories
+            }
+        case actions.ADD_INVENTORY_TYPE:
+            return {
+                ...state,
+                inventoryTypes: action.payload
+            }
         default:
             return state;
     }
