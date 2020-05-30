@@ -1,6 +1,6 @@
 import React from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
-import TextFieldWithLabel from './TextFieldWithLabel';
+import TextFieldWithLabel from '../TextFieldWithLabel';
 
 import './InventoryCard.css';
 
@@ -49,8 +49,12 @@ class InventoryCard extends React.Component {
     }
 
     getTitle = () => {
-        const title = this.props.cardData.fieldsData.find((field) => field.key === this.props.cardData.titleKey);
-        return title ? title.value : 'No Title';
+        let title = 'No Title';
+        const fieldData = this.props.cardData.fieldsData.find((field) => field.key === this.props.cardData.titleKey);
+        if(fieldData && fieldData.value) {
+            title = fieldData.value;
+        }
+        return title;
     }
 
     render () {

@@ -11,6 +11,7 @@ const getCardTemplatedBasesOnInventoryType = (inventoryTypes, inventoryType) => 
         });
         inventoryTemplate = {
             id: `${inventoryTypeForTemplate.type}_${Math.random()}`,
+            inventoryTypeId: inventoryTypeForTemplate.id,
             titleKey: inventoryTypeForTemplate.titleKey,
             type: inventoryTypeForTemplate.type,
             fieldsData

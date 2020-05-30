@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
-import AppBar from './components/AppBar';
-import Drawer from './components/Drawer';
 import InventoryManagement from './containers/InventoryManagement';
 import InventoryType from './containers/InventoryType';
 import AllInventories from './containers/AllInventories';
+import AppBar from './components/AppBar';
+import Drawer from './components/Drawer';
+import NoMatch from './components/NoMatch';
 import { inventoryFilters as inventoryFiltersConstants } from './constants';
 import history from './utils/history';
 
@@ -75,8 +76,9 @@ class App extends React.Component {
                     <Router history={history}>
                         <Switch>
                             <Route exact path="/" component={AllInventories} />
-                            <Route path="types" component={InventoryManagement} />
-                            <Route path="type/:id" component={InventoryType} />
+                            <Route path="/types" component={InventoryManagement} />
+                            <Route path="/type/:id" component={InventoryType} />
+                            <Route path="*" component={NoMatch} />
                         </Switch>
                     </Router>
                 </div>

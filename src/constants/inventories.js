@@ -2,6 +2,8 @@ const inventories = [
   {
     "id": "chainsaws1",
     "type": "chainsaws",
+    "titleKey": "model",
+    "inventoryTypeId": "086cbf25-cd40-4f9f-b644-1f054cf40950",
     "fieldsData": [
       {
         "displayName": "Grade",
@@ -37,6 +39,7 @@ const inventories = [
   },
   {
     "id": "chainsaws2",
+    "inventoryTypeId": "086cbf25-cd40-4f9f-b644-1f054cf40950",
     "titleKey": "model",
     "type": "chainsaws",
     "fieldsData": [
@@ -75,6 +78,8 @@ const inventories = [
   {
     "id": "bulldozer1",
     "type": "bulldozers",
+    "titleKey": "model",
+    "inventoryTypeId": "086cbf25-cd40-4f9f-b644-1f054cf40951",
     "fieldsData": [
       {
         "displayName": "Grade",

@@ -9,3 +9,10 @@
   overflow-y: auto;
   height: calc(100vh - 64px);
 }
+
+.noMatching-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

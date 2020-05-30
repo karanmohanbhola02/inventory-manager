@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import InventoryCardList from '../components/InventoryCardList';
+import InventoryCardList from '../components/inventory/InventoryCardList';
 import ButtonGroup from '../components/buttons/ButtonGroup';
 import { inventory } from '../store/actions';
 
