@@ -1,4 +1,4 @@
-.buttonGroup-container {
+.buttongroup-container {
     display: flex;
     padding: 20px;
     justify-content: flex-end;
@@ -33,4 +33,12 @@
 .inventoryCardBody-container {
     padding: 20px;
     background-color: white;
+}
+
+.fields-container {
+    margin-top: 20px;
+}
+
+.inventoryType-buttonGroup-container {
+
 }

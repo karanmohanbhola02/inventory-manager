@@ -31,10 +31,10 @@ class InventoryType extends React.Component {
         const filteredInventory = this.getFilteredInventory();
         return (
             <div>
-                <div className="buttonGroup-container">
-                <Button variant="contained" color="primary" onClick={this.handleButtonItemClick}>
-                    Add Item
-                </Button>
+                <div className="buttongroup-container">
+                    <Button variant="contained" color="primary" onClick={this.handleButtonItemClick}>
+                        Add Item
+                    </Button>
                 </div>
                 <InventoryCardList>
                     {filteredInventory.map((inventory, index) => {

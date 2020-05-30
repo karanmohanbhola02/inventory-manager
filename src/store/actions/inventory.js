@@ -6,8 +6,8 @@ const addInventory = (inventoryType) => {
         const existingInventories = getState().inventory.inventories;
         const inventoryTypes = getState().inventory.inventoryTypes;
         const inventoryCardTemplate = utils.getCardTemplatedBasesOnInventoryType(inventoryTypes, inventoryType);
-        
-        if(inventoryCardTemplate) {
+
+        if (inventoryCardTemplate) {
             const inventories = existingInventories ? [...existingInventories] : [];
             inventories.push(inventoryCardTemplate);
             dispatch({
@@ -34,7 +34,7 @@ const editInventory = (inventoryCardIndex, inventoryFieldsData) => {
     return (dispatch, getState) => {
         const existingInventories = getState().inventory.inventories;
         const inventories = existingInventories ? [...existingInventories] : [];
-        const editedInventory = {...inventories[inventoryCardIndex]};
+        const editedInventory = { ...inventories[inventoryCardIndex] };
         editedInventory.fieldsData = [...inventoryFieldsData];
         inventories.splice(inventoryCardIndex, 1, editedInventory);
         dispatch({
@@ -44,8 +44,29 @@ const editInventory = (inventoryCardIndex, inventoryFieldsData) => {
     }
 }
 
+const addInventoryType = () => {
+    return (dispatch, getState) => {
+
+    }
+}
+
+const removeInventoryType = () => {
+    return (dispatch, getState) => {
+
+    }
+}
+
+const editInventoryType = () => {
+    return (dispatch, getState) => {
+
+    }
+}
+
 export default {
     addInventory,
     removeInventory,
-    editInventory
+    editInventory,
+    addInventoryType,
+    removeInventoryType,
+    editInventoryType
 }

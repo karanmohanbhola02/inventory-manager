@@ -43,9 +43,9 @@ class ButtonGroup extends React.Component {
 
     render() {
         const { open } = this.state;
-        const { title, options } = this.props;
+        const { title, options, alignItems } = this.props;
         return (
-            <Grid container direction="column" alignItems="flex-end">
+            <Grid container direction="column" alignItems={alignItems}>
                 <Grid item xs={12}>
                     <MaterialButtonGroup variant="contained" color="primary" ref={this.setAnchorRef}>
                         <Typography className="buttonGroup-container">{title}</Typography>
@@ -91,5 +91,9 @@ class ButtonGroup extends React.Component {
         );
     }
 }
+
+ButtonGroup.defaultProps = {
+    alignItems: 'flex-end'
+};
 
 export default ButtonGroup;

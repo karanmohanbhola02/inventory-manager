@@ -1,0 +1,13 @@
+.textFieldGroup-container {
+    display: flex; 
+    align-items: center;
+}
+
+.textFieldGroup-text { 
+    width: 80%;
+}
+
+.textFieldGroup-label { 
+    padding: 0px 10px;
+    width: 20%;
+}
