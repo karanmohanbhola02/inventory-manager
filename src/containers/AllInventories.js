@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import InventoryCardList from '../components/inventory/InventoryCardList';
+import InventoryCard from '../components/inventory/InventoryCard';
 import ButtonGroup from '../components/buttons/ButtonGroup';
 import { inventory } from '../store/actions';
 
@@ -21,7 +22,7 @@ class AllInventories extends React.Component {
     }
 
     render () {
-        const { inventories, removeInventory, editInventory } = this.props;
+        const { inventories, ...others } = this.props;
         const inventoryOptions = this.getInventoryOptions();
         return (
             <div>
@@ -31,10 +32,13 @@ class AllInventories extends React.Component {
                         handleButtonItemClick={this.handleButtonItemClick}
                         options={inventoryOptions} />
                 </div>
-                <InventoryCardList 
-                    inventories={inventories}
-                    editInventory={editInventory}
-                    removeInventory={removeInventory} />
+                <InventoryCardList>
+                    {inventories.map((inventory, index) => {
+                        return (
+                            <InventoryCard key={inventory.id} cardIndex={index} cardData={inventory} {...others} />
+                        ) 
+                    })}
+                </InventoryCardList>
             </div>
         )
     }

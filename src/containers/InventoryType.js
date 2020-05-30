@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import InventoryCardList from '../components/inventory/InventoryCardList';
+import InventoryCard from '../components/inventory/InventoryCard';
 import { inventory } from '../store/actions';
 
 class InventoryType extends React.Component {
@@ -35,10 +36,18 @@ class InventoryType extends React.Component {
                     Add Item
                 </Button>
                 </div>
-                <InventoryCardList
-                    inventories={filteredInventory}
-                    editInventory={editInventory}
-                    removeInventory={removeInventory} />
+                <InventoryCardList>
+                    {filteredInventory.map((inventory, index) => {
+                        return (
+                            <InventoryCard 
+                                key={inventory.id} 
+                                cardIndex={index} 
+                                cardData={inventory} 
+                                removeInventory={removeInventory} 
+                                editInventory={editInventory} />
+                        ) 
+                    })}
+                </InventoryCardList>
             </div>
         );
     }

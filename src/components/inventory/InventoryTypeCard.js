@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import InventoryCardHeader from './InventoryCardHeader';
 import TextFieldWithLabel from '../TextFieldWithLabel';
 
@@ -48,14 +47,12 @@ class InventoryCard extends React.Component {
         const { cardData } = this.props;
         const title= this.getTitle();
         return (
-            <Grid item xl={3} lg={3} md={4} sm={6} xs={12}>
-                <div className={'inventoryCard-container'}>
-                    <InventoryCardHeader type={cardData.type} model={title} handleDeleteCard={this.handleDeleteCard}/>
-                    <InventoryCardBody 
-                        fieldsData={cardData.fieldsData}
-                        handleFieldChange={this.handleFieldChange} />
-                </div>
-            </Grid>
+            <div className={'inventoryCard-container'}>
+                <InventoryCardHeader type={cardData.type} model={title} handleDeleteCard={this.handleDeleteCard}/>
+                <InventoryCardBody 
+                    fieldsData={cardData.fieldsData}
+                    handleFieldChange={this.handleFieldChange} />
+            </div>
         );
     }
 }
