@@ -11,7 +11,7 @@ const InventoryCardHeader= ({ type, model, handleDeleteCard }) => {
             <div className="inventoryCardHeader-title">
                 {`${type} ${model}`}
             </div>
-            <div className="inventoryCardHeader-cross" onClick={() => {}}>
+            <div className="inventoryCardHeader-cross" onClick={handleDeleteCard}>
                 <ClearIcon />
             </div>
         </div>
@@ -23,7 +23,7 @@ const InventoryCardBody = ({ fieldsData }) => {
         <div className="inventoryCardBody-container">
             {fieldsData.map((field) => {
                 return (
-                    <TextFieldWithLabel label={field.displayName} value={field.value} />
+                    <TextFieldWithLabel key={field.key} label={field.displayName} value={field.value} />
                 )
             })}
         </div>
@@ -33,16 +33,20 @@ const InventoryCardBody = ({ fieldsData }) => {
 class InventoryCard extends React.Component {
 
     handleDeleteCard = () => {
+        this.props.removeInventory(this.props.cardIndex);
+    }
 
+    getTitle = () => {
+        const title = this.props.cardData.fieldsData.find((field) => field.key === this.props.cardData.titleKey);
+        return title ? title.value : '';
     }
 
     render () {
         const { cardData } = this.props;
-
-        console.log(cardData)
+        const title= this.getTitle();
         return (
             <div className={'inventoryCard-container'}>
-                <InventoryCardHeader type={cardData.type} model={cardData.title || ''} handleDeleteCard={this.handleDeleteCard}/>
+                <InventoryCardHeader type={cardData.type} model={title} handleDeleteCard={this.handleDeleteCard}/>
                 <InventoryCardBody fieldsData={cardData.fieldsData} />
             </div>
         );

@@ -2,6 +2,7 @@ const inventoryTypes = [
     {
         "id": "086cbf25-cd40-4f9f-b644-1f054cf40950",
         "type": "chainsaws",
+        "titleKey": "model",
         "fields": [
             {
                 "fieldName": "Grade",
@@ -38,6 +39,7 @@ const inventoryTypes = [
     {
         "id": "086cbf25-cd40-4f9f-b644-1f054cf40951",
         "type": "bulldozers",
+        "titleKey": "model",
         "fields": [
             {
                 "fieldName": "Grade",

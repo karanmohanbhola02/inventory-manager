@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import InventoryCardList from '../components/InventoryCardList';
-import ButtonGroup from '../components/buttons/ButtonGroup'
+import ButtonGroup from '../components/buttons/ButtonGroup';
+import { inventory } from '../store/actions';
 
 class AllInventories extends React.Component { 
 
@@ -14,12 +15,13 @@ class AllInventories extends React.Component {
         });
     }
 
-    handleButtonItemClick= (option, index) => {
+    handleButtonItemClick= (option) => {
         //call action to add a card
+        this.props.addInventory(option);
     }
 
     render () {
-        const { inventories } = this.props;
+        const { inventories, removeInventory } = this.props;
         const inventoryOptions = this.getInventoryOptions();
         return (
             <div>
@@ -29,7 +31,7 @@ class AllInventories extends React.Component {
                         handleButtonItemClick={this.handleButtonItemClick}
                         options={inventoryOptions} />
                 </div>
-                <InventoryCardList inventories={inventories} />
+                <InventoryCardList inventories={inventories} removeInventory={removeInventory} />
             </div>
         )
     }
@@ -41,6 +43,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    addInventory: inventory.addInventory,
+    removeInventory: inventory.removeInventory
 };
 
 const AllInventoriesWrapper = connect(

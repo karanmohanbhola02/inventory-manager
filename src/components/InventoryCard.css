@@ -27,6 +27,7 @@
 .inventoryCardHeader-cross {
     width: 10%;
     text-align: right;
+    cursor: pointer;
 }
 
 .inventoryCardBody-container {

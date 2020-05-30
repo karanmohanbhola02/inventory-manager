@@ -8,10 +8,20 @@ const initialState = {
 
 const inventory = (state = initialState, action) => {
     switch (action.type) {
-        case actions.ADD_INVENTORY_TYPE:
+        case actions.ADD_INVENTORY:
             return {
                 ...state,
-                inventoryTypes: action.payload
+                inventories: action.payload
+            }
+        case actions.REMOVE_INVENTORY:
+            return {
+                ...state,
+                inventories: action.payload
+            }
+        case actions.EDIT_INVENTORY:
+            return {
+                ...state,
+                inventories: action.payload
             }
         default:
             return state;

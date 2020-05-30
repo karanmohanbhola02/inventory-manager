@@ -37,7 +37,7 @@ const inventories = [
   },
   {
     "id": "chainsaws2",
-    "title": "Blue Max 101",
+    "titleKey": "model",
     "type": "chainsaws",
     "fieldsData": [
       {
