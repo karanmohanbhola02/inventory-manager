@@ -21,8 +21,8 @@ const ButtonAppBar = ({ title, handleDrawerState, inventoryFilters, handleInvent
                 <div className="inventoryTypes-container">
                     {inventoryFilters.map((inventoryFilter) => {
                         return (
-                            <Link key={inventoryFilter} className={'inventoryType-link'} onClick={handleInventoryFilterClick(inventoryFilter)} color="inherit">
-                                {inventoryFilter}
+                            <Link key={inventoryFilter.id} className={'inventoryType-link'} onClick={handleInventoryFilterClick(inventoryFilter)} color="inherit">
+                                {inventoryFilter.type}
                             </Link>
                         )
                     })}

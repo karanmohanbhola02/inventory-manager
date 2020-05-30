@@ -2,7 +2,7 @@
     margin-right: 2px;
 }
 
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 600px) {
     .MuiIconButton-root.menuButton {
         display: none;
     }
@@ -12,7 +12,7 @@
     padding: 0 20px 0;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
     .inventoryTypes-container {
         display: none;
     }
@@ -21,4 +21,5 @@
 .MuiTypography-root.inventoryType-link {
     margin: 0 10px 0;
     cursor: pointer;
+    text-transform: uppercase;
 }

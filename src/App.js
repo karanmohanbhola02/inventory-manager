@@ -22,15 +22,37 @@ class App extends React.Component {
     }
 
     getInventoryFilters = () => {
-        const inventoryFilters = [inventoryFiltersConstants.ALL];
-        inventoryFilters.push(...this.props.inventoryTypes);
-        inventoryFilters.push(inventoryFiltersConstants.MANAGE_TYPES)
+        const inventoryFilters = [{
+            id: inventoryFiltersConstants.ALL,
+            type: inventoryFiltersConstants.ALL
+        }];
+        const inventoryTypes = this.props.inventoryTypes.map((inventory) => {
+            return {
+                id: inventory.id,
+                type: inventory.type
+            }
+        });
+        inventoryFilters.push(...inventoryTypes);
+        inventoryFilters.push({
+            id: inventoryFiltersConstants.MANAGE_TYPES,
+            type: inventoryFiltersConstants.MANAGE_TYPES
+        })
         return inventoryFilters;
     }
 
     handleInventoryFilterClick = (filterType) => {
         return () => {
-
+            const id = filterType.id;
+            switch (id) {
+                case inventoryFiltersConstants.ALL:
+                    history.push('/');
+                    break;
+                case inventoryFiltersConstants.MANAGE_TYPES:
+                    history.push('/types');
+                    break;
+                default: 
+                    history.push(`/type/${filterType.id}`);
+            }
         }
     }
 
@@ -49,13 +71,15 @@ class App extends React.Component {
                     isDrawerOpened={isDrawerOpened}
                     inventoryFilters={inventoryFilters}
                     handleInventoryFilterClick={this.handleInventoryFilterClick} />
-                <Router history={history}>
-                    <Switch>
-                        <Route exact path="/" component={AllInventories} />
-                        <Route path="types" component={InventoryManagement} />
-                        <Route path="type/:id" component={InventoryType} />
-                    </Switch>
-                </Router>
+                <div className="app-container">
+                    <Router history={history}>
+                        <Switch>
+                            <Route exact path="/" component={AllInventories} />
+                            <Route path="types" component={InventoryManagement} />
+                            <Route path="type/:id" component={InventoryType} />
+                        </Switch>
+                    </Router>
+                </div>
             </div>
         );
     }

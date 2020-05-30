@@ -1,0 +1,35 @@
+.buttonGroup-container {
+    display: flex;
+    padding: 20px;
+    justify-content: flex-end;
+}
+
+.inventoryCardList-container {
+    padding: 20px;
+}
+
+.inventoryCard-container {
+    border: 1px solid black;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.inventoryCardHeader-container {
+    padding: 20px;
+    background-color: gray;
+    display: flex;
+}
+
+.inventoryCardHeader-title {
+    width: 90%;
+}
+
+.inventoryCardHeader-cross {
+    width: 10%;
+    text-align: right;
+}
+
+.inventoryCardBody-container {
+    padding: 20px;
+    background-color: white;
+}
