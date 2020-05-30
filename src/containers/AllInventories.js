@@ -21,7 +21,7 @@ class AllInventories extends React.Component {
     }
 
     render () {
-        const { inventories, removeInventory } = this.props;
+        const { inventories, removeInventory, editInventory } = this.props;
         const inventoryOptions = this.getInventoryOptions();
         return (
             <div>
@@ -31,7 +31,10 @@ class AllInventories extends React.Component {
                         handleButtonItemClick={this.handleButtonItemClick}
                         options={inventoryOptions} />
                 </div>
-                <InventoryCardList inventories={inventories} removeInventory={removeInventory} />
+                <InventoryCardList 
+                    inventories={inventories}
+                    editInventory={editInventory}
+                    removeInventory={removeInventory} />
             </div>
         )
     }
@@ -44,7 +47,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     addInventory: inventory.addInventory,
-    removeInventory: inventory.removeInventory
+    removeInventory: inventory.removeInventory,
+    editInventory: inventory.editInventory
 };
 
 const AllInventoriesWrapper = connect(

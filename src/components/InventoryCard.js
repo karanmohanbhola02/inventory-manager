@@ -18,12 +18,12 @@ const InventoryCardHeader= ({ type, model, handleDeleteCard }) => {
     )
 };
 
-const InventoryCardBody = ({ fieldsData }) => {
+const InventoryCardBody = ({ fieldsData, handleFieldChange }) => {
     return (
         <div className="inventoryCardBody-container">
-            {fieldsData.map((field) => {
+            {fieldsData.map((field, index) => {
                 return (
-                    <TextFieldWithLabel key={field.key} label={field.displayName} value={field.value} />
+                    <TextFieldWithLabel key={field.key} label={field.displayName} value={field.value} handleChange={(e) => handleFieldChange(e.target.value, index)} />
                 )
             })}
         </div>
@@ -36,9 +36,21 @@ class InventoryCard extends React.Component {
         this.props.removeInventory(this.props.cardIndex);
     }
 
+    handleFieldChange = (value, fieldIndex) => {
+        let fieldsData = this.props.cardData.fieldsData;
+
+        // update field value
+        const fieldData = fieldsData[fieldIndex];
+        fieldData.value = value;
+
+        fieldsData.splice(fieldIndex, 1, fieldData);
+
+        this.props.editInventory(this.props.cardIndex, fieldsData);
+    }
+
     getTitle = () => {
         const title = this.props.cardData.fieldsData.find((field) => field.key === this.props.cardData.titleKey);
-        return title ? title.value : '';
+        return title ? title.value : 'No Title';
     }
 
     render () {
@@ -47,7 +59,9 @@ class InventoryCard extends React.Component {
         return (
             <div className={'inventoryCard-container'}>
                 <InventoryCardHeader type={cardData.type} model={title} handleDeleteCard={this.handleDeleteCard}/>
-                <InventoryCardBody fieldsData={cardData.fieldsData} />
+                <InventoryCardBody 
+                    fieldsData={cardData.fieldsData}
+                    handleFieldChange={this.handleFieldChange} />
             </div>
         );
     }

@@ -30,14 +30,16 @@ const removeInventory = (inventoryCardIndex) => {
     }
 }
 
-const editInventory = (inventoryCardIndex, inventory) => {
+const editInventory = (inventoryCardIndex, inventoryFieldsData) => {
     return (dispatch, getState) => {
         const existingInventories = getState().inventory.inventories;
         const inventories = existingInventories ? [...existingInventories] : [];
-        inventories.splice(inventoryCardIndex, 1, inventory);
+        const editedInventory = {...inventories[inventoryCardIndex]};
+        editedInventory.fieldsData = [...inventoryFieldsData];
+        inventories.splice(inventoryCardIndex, 1, editedInventory);
         dispatch({
             type: actions.EDIT_INVENTORY,
-            payload: existingInventories || []
+            payload: inventories || []
         });
     }
 }
