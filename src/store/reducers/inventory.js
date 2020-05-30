@@ -1,7 +1,7 @@
 import actions from '../constants';
 
 const initialState = {
-    inventoryTypes: null
+    inventoryTypes: ['ChainSaws']
 };
 
 const inventory = (state = initialState, action) => {
