@@ -18,7 +18,7 @@ const DropDown = ({ handleChange, options, selectedOption, title }) => {
                 onChange={handleChange}
             >
                 {options.map((option) => {
-                    return <MenuItem value={option.key}>{option.fieldName}</MenuItem>
+                    return <MenuItem key={option.key} value={option.key}>{option.fieldName}</MenuItem>
                 })}
             </Select>
         </FormControl>

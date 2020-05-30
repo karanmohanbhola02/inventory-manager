@@ -20,7 +20,7 @@ const InventoryCardBody = ({ fieldsData, handleFieldChange }) => {
 class InventoryCard extends React.Component {
 
     handleDeleteCard = () => {
-        this.props.removeInventory(this.props.cardIndex);
+        this.props.removeInventory(this.props.cardData.id, this.props.cardData.type);
     }
 
     handleFieldChange = (value, fieldIndex) => {
@@ -32,7 +32,7 @@ class InventoryCard extends React.Component {
 
         fieldsData.splice(fieldIndex, 1, fieldData);
 
-        this.props.editInventory(this.props.cardIndex, fieldsData);
+        this.props.editInventory(this.props.cardData.id, this.props.cardData.type, fieldsData);
     }
 
     getTitle = () => {

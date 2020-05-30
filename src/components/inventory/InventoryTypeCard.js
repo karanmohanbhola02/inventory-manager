@@ -10,7 +10,15 @@ import { fieldTypes } from '../../constants';
 
 import './InventoryCard.css';
 
-const InventoryTypeCardBody = ({ fieldsData, objectType, handleObjectTypeChange, handleObjectTitleChange, handleFieldChange, selectedOption, handleButtonItemClick }) => {
+const InventoryTypeCardBody = ({ 
+    fieldsData, 
+    objectType, 
+    handleObjectTypeChange, 
+    handleObjectTitleChange, 
+    handleFieldChange, 
+    selectedOption,
+    addInventoryTypeField 
+}) => {
     return (
         <div className="inventoryCardBody-container">
             {/* Object Type */}
@@ -36,7 +44,7 @@ const InventoryTypeCardBody = ({ fieldsData, objectType, handleObjectTypeChange,
                 <ButtonGroup 
                     title="Add Field"
                     alignItems="center"
-                    handleButtonItemClick={handleButtonItemClick}
+                    handleButtonItemClick={addInventoryTypeField}
                     options={fieldTypes} />
             </div>
         </div>
@@ -85,6 +93,15 @@ class InventoryCard extends React.Component {
         return selectedOption;
     }
 
+    addInventoryTypeField = (fieldType) => {
+        const field = {
+            fieldName: '',
+            key: `field_${Math.random()}`,
+            fieldType: fieldType.name
+        };
+        this.props.addInventoryTypeField(this.props.inventoryTypeIndex, field);
+    }
+
     render() {
         const { inventoryType } = this.props;
         const selectedOption = this.getSelectedOption();
@@ -96,6 +113,7 @@ class InventoryCard extends React.Component {
                         selectedOption={selectedOption}
                         fieldsData={inventoryType.fields}
                         objectType={inventoryType.type || ''}
+                        addInventoryTypeField={this.addInventoryTypeField}
                         handleObjectTitleChange={this.handleObjectTitleChange}
                         handleObjectTypeChange={this.handleObjectTypeChange}
                         handleFieldChange={this.handleFieldChange} />

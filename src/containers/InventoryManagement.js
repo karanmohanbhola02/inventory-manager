@@ -45,7 +45,8 @@ const mapDispatchToProps = {
     addInventoryType: inventory.addInventoryType,
     removeInventoryType: inventory.removeInventoryType,
     editInventoryType: inventory.editInventoryType,
-    editInventoryTypeFieldsChange: inventory.editInventoryTypeFieldsChange
+    editInventoryTypeFieldsChange: inventory.editInventoryTypeFieldsChange,
+    addInventoryTypeField: inventory.addInventoryTypeField
 };
 
 const InventoryManagementWrapper = connect(
