@@ -11,9 +11,9 @@ const Drawer = ({ inventoryFilters, isDrawerOpened, handleDrawerState, handleInv
             <List component="nav" aria-label="mailbox folders">
                 {inventoryFilters.map((inventoryFilter) => {
                     return (
-                        <div key={inventoryFilter}>
-                            <ListItem button onClick={handleInventoryFilterClick(inventoryFilter)}>
-                                <ListItemText primary={inventoryFilter} />
+                        <div key={inventoryFilter.id}>
+                            <ListItem button onClick={handleInventoryFilterClick(inventoryFilter, true)}>
+                                <ListItemText primary={inventoryFilter.type} />
                             </ListItem>
                             <Divider />
                         </div>

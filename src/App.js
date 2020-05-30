@@ -41,7 +41,7 @@ class App extends React.Component {
         return inventoryFilters;
     }
 
-    handleInventoryFilterClick = (filterType) => {
+    handleInventoryFilterClick = (filterType, shouldCloseModal = false) => {
         return () => {
             const id = filterType.id;
             switch (id) {
@@ -54,6 +54,8 @@ class App extends React.Component {
                 default: 
                     history.push(`/type/${filterType.id}`);
             }
+
+            shouldCloseModal && this.handleDrawerState();
         }
     }
 
