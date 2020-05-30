@@ -75,11 +75,43 @@ const removeInventoryType = (inventoryTypeIndex) => {
     }
 }
 
-const editInventoryType = () => {
+const editInventoryType = (inventoryTypeIndex, inventoryType) => {
     return (dispatch, getState) => {
-
+        const existingInventoryTypes = getState().inventory.inventoryTypes;
+        const inventoryTypes = existingInventoryTypes ? [...existingInventoryTypes] : [];
+        inventoryTypes.splice(inventoryTypeIndex, 1, inventoryType);
+        dispatch({
+            type: actions.EDIT_INVENTORY_TYPE,
+            payload: inventoryTypes || []
+        });
     }
 }
+
+const editInventoryTypeFieldsChange = (inventoryTypeIndex, inventoryType) => {
+    return (dispatch, getState) => {
+        dispatch(editInventoryType(inventoryTypeIndex, inventoryType));
+
+        // update all the inventories with new key
+        const existingInventories = getState().inventory.inventories;
+        const inventories = existingInventories ? [...existingInventories] : [];
+        const updatedInventories = inventories.map((inventory) => {
+            if(inventory.inventoryTypeId === inventoryType.id && inventory.type === inventoryType.type) {
+                inventory.titleKey = inventoryType.titleKey;
+                inventory.fieldsData = inventory.fieldsData.map((field, index) => {
+                    return {
+                        ...field,
+                        displayName: inventoryType.fields[index].fieldName
+                    };
+                });
+            }
+            return inventory;
+        });
+        dispatch({
+            type: actions.EDIT_INVENTORY_OBJECT_TITLE,
+            payload: updatedInventories
+        })
+    }
+};
 
 export default {
     addInventory,
@@ -87,5 +119,6 @@ export default {
     editInventory,
     addInventoryType,
     removeInventoryType,
-    editInventoryType
+    editInventoryType,
+    editInventoryTypeFieldsChange
 }

@@ -34,6 +34,11 @@ const inventory = (state = initialState, action) => {
                 ...state,
                 inventoryTypes: action.payload
             }
+        case actions.EDIT_INVENTORY_TYPE:
+            return {
+                ...state,
+                inventoryTypes: action.payload
+            }
         default:
             return state;
     }

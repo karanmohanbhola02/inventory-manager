@@ -10,15 +10,15 @@ import { fieldTypes } from '../../constants';
 
 import './InventoryCard.css';
 
-const InventoryTypeCardBody = ({ fieldsData, handleFieldChange, selectedOption, handleButtonItemClick }) => {
+const InventoryTypeCardBody = ({ fieldsData, objectType, handleObjectTypeChange, handleObjectTitleChange, handleFieldChange, selectedOption, handleButtonItemClick }) => {
     return (
         <div className="inventoryCardBody-container">
             {/* Object Type */}
-            <TextFieldWithLabel label={'Object Type'} value={''} handleChange={(e) => handleFieldChange()} />
+            <TextFieldWithLabel label={'Object Type'} value={objectType} handleChange={(e) => handleObjectTypeChange('type', e.target.value)} />
             {/* Object Title */}
             <DropDown
                 title="Object Title"
-                handleChange={handleFieldChange}
+                handleChange={handleObjectTitleChange}
                 options={fieldsData}
                 selectedOption={selectedOption} />
             <div className="fields-container">
@@ -49,16 +49,31 @@ class InventoryCard extends React.Component {
         this.props.removeInventoryType(this.props.inventoryTypeIndex);
     }
 
+    handleObjectTypeChange = (key, value) => {
+        let inventoryType = {...this.props.inventoryType};
+        inventoryType[key] = value;
+        this.props.editInventoryType(this.props.inventoryTypeIndex, inventoryType);
+    }
+
+    handleObjectTitleChange = (e) => {
+        const titleKey = e.target.value;
+        let inventoryType = {...this.props.inventoryType};
+        inventoryType.titleKey = titleKey;
+        this.props.editInventoryTypeFieldsChange(this.props.inventoryTypeIndex, inventoryType);
+    }
+
     handleFieldChange = (value, fieldIndex) => {
-        let fieldsData = this.props.cardData.fieldsData;
-
+        const inventoryType = {...this.props.inventoryType};
+        
+        const fields = [...inventoryType.fields];
+        
         // update field value
-        const fieldData = fieldsData[fieldIndex];
-        fieldData.value = value;
+        const fieldData = fields[fieldIndex];
+        fieldData.fieldName = value;
+        fields.splice(fieldIndex, 1, fieldData);
+        inventoryType.fields = fields;
 
-        fieldsData.splice(fieldIndex, 1, fieldData);
-
-        this.props.editInventory(this.props.cardIndex, fieldsData);
+        this.props.editInventoryTypeFieldsChange(this.props.inventoryTypeIndex, inventoryType);
     }
 
     getSelectedOption = () => {
@@ -80,6 +95,9 @@ class InventoryCard extends React.Component {
                     <InventoryTypeCardBody
                         selectedOption={selectedOption}
                         fieldsData={inventoryType.fields}
+                        objectType={inventoryType.type || ''}
+                        handleObjectTitleChange={this.handleObjectTitleChange}
+                        handleObjectTypeChange={this.handleObjectTypeChange}
                         handleFieldChange={this.handleFieldChange} />
                 </div>
             </Grid>
